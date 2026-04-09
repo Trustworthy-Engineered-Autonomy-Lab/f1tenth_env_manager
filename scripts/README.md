@@ -60,18 +60,20 @@ Then run the launcher:
 
 First make sure Docker is up, then enter the container manually if needed:
 
-Once inside the container, place `auto_run_sim.sh` in `/sim_ws` and make it executable:
+After running the ps1 file, everything should be running smoothly on your end. To check on individual sessions, run these commands.
 
 ```bash
-cd /sim_ws
-chmod +x auto_run_sim.sh
+docker exec -it f1tenth_session_1 /bin/bash
 ```
 
-You can test it manually inside the container with:
+Once inside the container run these.
 
 ```bash
-/sim_ws/auto_run_sim.sh
+tmux ls
+tmux attach -t f1sim_1
 ```
+
+**NOTE** just change the number `1` to whichever session you want to observe.
 
 ## Quick verification commands
 
