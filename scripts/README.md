@@ -75,24 +75,10 @@ tmux attach -t f1sim_1
 
 **NOTE** just change the number `1` to whichever session you want to observe.
 
-## Quick verification commands
-
-From PowerShell on the host:
-
-```powershell
-docker exec -it f1tenth_gym_ros-sim-1 sh -lc "ls /sim_ws"
-```
-
-To check that the automation script exists:
-
-```powershell
-docker exec -it f1tenth_gym_ros-sim-1 sh -lc "ls -l /sim_ws/auto_run_sim.sh"
-```
-
 ## Typical workflow
 
 1. Save `start_f1tenth.ps1` in the repo root on Windows.
-2. Put `auto_run_sim.sh` in `/sim_ws` inside the container.
+2. Put `auto_run_sim.sh` in `/sim_ws` inside the container and in your local repo root.
 3. Run `chmod +x /sim_ws/auto_run_sim.sh` inside the container one time.
 4. From PowerShell, run `./start_f1tenth.ps1`.
 5. The script should:
