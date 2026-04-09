@@ -12,11 +12,14 @@ Create this file on your **Windows host machine** in the root of your repo:
 
 This is the script you run from PowerShell.
 
+**IMPORTANT** You **MUST** create a folder in your local `f1tenth_gym_ros` folder called `src` and place the `sim_ftg` and the `f1tenth_env_manager` packages in there. The easiest way to do this is just to copy the `f1tenth_env_manager` folder and the `sim_ftg` folder from this repo. 
+
 ### 2. Container automation script
 
-Create this file **inside the Docker container workspace** at:
+Create this file **inside the Docker container workspace AND inside your repo root** at:
 
 `/sim_ws/auto_run_sim.sh`
+`C:\TeaLab\f1tenth_gym_ros\auto_run_sim.sh`
 
 This script runs inside the container and should:
 
@@ -29,7 +32,7 @@ This script runs inside the container and should:
 ## Important notes
 
 * `start_f1tenth.ps1` runs on your **host machine**.
-* `auto_run_sim.sh` runs **inside the container**.
+* `auto_run_sim.sh` runs **inside the container** place it inside the container **AND** inside your f1tenth_gym_ros repo next to `start_f1tenth.ps1`.
 * Since you are on Windows PowerShell, `chmod` will **not** work on the host.
 * `chmod +x` is only needed **inside the Linux container**.
 

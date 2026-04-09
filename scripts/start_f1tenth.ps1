@@ -26,16 +26,20 @@ for ($i = 1; $i -le $NumSessions; $i++) {
     New-Item -ItemType Directory -Force -Path $sessionResults | Out-Null
 
     Write-Host "Starting $containerName ..."
-    
+
+    $containerCmd = "chmod +x /sim_ws/src/f1tenth_gym_ros/auto_run_sim.sh && /sim_ws/src/f1tenth_gym_ros/auto_run_sim.sh"
+
     docker run -d `
         --name $containerName `
+        --entrypoint /bin/bash `
         -e SESSION_ID=$i `
         -e MAX_LAPS=$MaxLaps `
+        -e RESULTS_DIR="/sim_ws/results/session_$i" `
         -e ATTACH_TMUX=0 `
         -v "${repoRoot}:/sim_ws/src/f1tenth_gym_ros" `
         -v "${sessionResults}:/sim_ws/results/session_$i" `
         $imageName `
-        /bin/bash -lc "cp /sim_ws/src/f1tenth_gym_ros/auto_run_sim.sh /sim_ws/auto_run_sim.sh && chmod +x /sim_ws/auto_run_sim.sh && /sim_ws/auto_run_sim.sh"
+        -lc $containerCmd
 }
 
 Write-Host ""

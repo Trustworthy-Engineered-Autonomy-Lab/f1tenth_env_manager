@@ -16,6 +16,16 @@ echo "MAX_LAPS: $MAX_LAPS"
 echo "RESULTS_DIR: $RESULTS_DIR"
 
 mkdir -p "$RESULTS_DIR"
+mkdir -p /sim_ws/src
+
+# Flatten nested ROS packages into sibling packages in /sim_ws/src
+if [ -d /sim_ws/src/f1tenth_gym_ros/src/sim_ftg ] && [ ! -d /sim_ws/src/sim_ftg ]; then
+    cp -r /sim_ws/src/f1tenth_gym_ros/src/sim_ftg /sim_ws/src/sim_ftg
+fi
+
+if [ -d /sim_ws/src/f1tenth_gym_ros/src/f1tenth_env_manager ] && [ ! -d /sim_ws/src/f1tenth_env_manager ]; then
+    cp -r /sim_ws/src/f1tenth_gym_ros/src/f1tenth_env_manager /sim_ws/src/f1tenth_env_manager
+fi
 
 tmux has-session -t "$TMUX_SESSION" 2>/dev/null && tmux kill-session -t "$TMUX_SESSION"
 tmux new-session -d -s "$TMUX_SESSION"
